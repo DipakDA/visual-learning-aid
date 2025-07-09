@@ -32,6 +32,9 @@ export const CategorySelection: React.FC<CategorySelectionProps> = ({ categories
 
   return (
     <div className="flex flex-col items-center">
+      <div className="w-full flex justify-start mb-4">
+        <img src="./assets/logo.jpg" alt="Blind People's Association Logo" className="h-24 w-auto" />
+      </div>
       <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-4 text-gray-900 dark:text-white">
         Choose a Category
       </h1>
