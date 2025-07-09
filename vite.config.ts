@@ -18,6 +18,10 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
+      },
+      server: {
+        host: true, // ← allows access from network
+        port: 5173, // ← optional; use default port or change it
       }
     };
 });
