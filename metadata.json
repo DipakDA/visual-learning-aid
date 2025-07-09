@@ -1,0 +1,5 @@
+{
+  "name": "Visual Learning Aid",
+  "description": "An accessible learning aid for students, presenting images and audio for various object categories. It helps with object recognition and vocabulary building through a simple, interactive interface.",
+  "requestFramePermissions": []
+}
