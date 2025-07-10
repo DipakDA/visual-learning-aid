@@ -28,7 +28,7 @@ export const App: React.FC = () => {
           <LearningView category={selectedCategory} onGoHome={handleGoHome} />
         )}
       </main>
-      <Footer />
+      {!selectedCategory && <Footer />}
     </div>
   );
 };

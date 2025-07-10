@@ -2,29 +2,42 @@ import { useCallback, useEffect, useState } from 'react';
 
 export const useTextToSpeech = () => {
   const [isSupported, setIsSupported] = useState(false);
+  const [voice, setVoice] = useState<SpeechSynthesisVoice | null>(null);
 
   useEffect(() => {
     if ('speechSynthesis' in window) {
       setIsSupported(true);
+
+      const loadVoices = () => {
+        const voices = window.speechSynthesis.getVoices();
+        // Try to find a voice with Indian English
+        const indianVoice = voices.find(v =>
+          v.lang.includes('hi-IN') || v.name.toLowerCase().includes('india')
+        );
+        if (indianVoice) setVoice(indianVoice);
+      };
+
+      loadVoices();
+      window.speechSynthesis.onvoiceschanged = loadVoices;
     }
   }, []);
 
   const speak = useCallback((text: string) => {
     if (!isSupported || !text) return;
-    
-    // Cancel any ongoing speech before starting a new one
+
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
-    // Optional: configure voice, pitch, rate
-    // utterance.voice = window.speechSynthesis.getVoices()[0];
-    utterance.pitch = 1;
-    // Slowed down speech rate to 30% of default (1.0 -> 0.4) for clearer enunciation.
-    utterance.rate = 0.4;
-    utterance.volume = 1;
-    
-    window.speechSynthesis.speak(utterance);
-  }, [isSupported]);
+    if (voice) {
+      utterance.voice = voice;
+    }
 
-  return { speak, isSupported };
+    utterance.pitch = 1;
+    utterance.rate = 0.6; // Slightly faster for more natural tone
+    utterance.volume = 1;
+
+    window.speechSynthesis.speak(utterance);
+  }, [isSupported, voice]);
+
+  return { speak, isSupported, voice };
 };

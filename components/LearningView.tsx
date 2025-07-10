@@ -31,6 +31,8 @@ export const LearningView: React.FC<LearningViewProps> = ({ category, onGoHome }
 
   const items = useMemo(() => {
     const itemList = category.items;
+
+    console.log("Category items:", itemList);
     return isShuffled ? shuffleArray(itemList) : itemList;
   }, [category.items, isShuffled]);
   
@@ -39,6 +41,8 @@ export const LearningView: React.FC<LearningViewProps> = ({ category, onGoHome }
     setCurrentIndex(0);
   }, [items]);
 
+  // console.log("Current items:", items);
+
   const currentItem: ItemData | undefined = items[currentIndex];
 
   useEffect(() => {
@@ -46,6 +50,8 @@ export const LearningView: React.FC<LearningViewProps> = ({ category, onGoHome }
       speak(currentItem.name);
     }
   }, [currentItem, speak]);
+
+  console.log(currentItem);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
@@ -88,8 +94,14 @@ export const LearningView: React.FC<LearningViewProps> = ({ category, onGoHome }
         </div>
       </div>
 
-      <div className="w-full text-center mb-6">
+      <div className="text-center mb-6">
         <p className="text-5xl md:text-6xl font-bold tracking-wider text-gray-900 dark:text-white">{currentItem.name}</p>
+        {currentItem.hindi_name && (
+          <p className="text-xl text-gray-700 dark:text-gray-300 mt-1">{currentItem.hindi_name}</p>
+        )}
+        {currentItem.gujarati_name && (
+          <p className="text-xl text-gray-700 dark:text-gray-300 mt-1">{currentItem.gujarati_name}</p>
+        )}
       </div>
 
       <div className="w-full flex items-center justify-center gap-6 md:gap-10">

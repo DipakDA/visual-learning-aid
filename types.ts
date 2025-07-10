@@ -5,6 +5,8 @@ export type CategoryName = 'Fruits' | 'Vegetables' | 'Tools' | 'Animals' | 'Hous
 export interface ItemData {
   name: string;
   image: string; // Path to the local image file
+  hindi_name: string;
+  gujarati_name: string;
 }
 
 export interface Category {

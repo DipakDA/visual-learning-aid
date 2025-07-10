@@ -9,7 +9,7 @@ interface CategorySelectionProps {
 const CategoryCard: React.FC<{ category: Category; onSelect: () => void; color: string }> = ({ category, onSelect, color }) => (
   <button
     onClick={onSelect}
-    className={`group flex flex-col items-center justify-center p-6 rounded-2xl shadow-lg hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-offset-2 dark:focus:ring-offset-gray-900 focus:ring-primary-dark transform transition-all duration-300 ease-in-out hover:-translate-y-2 ${color}`}
+    className={`w-full max-w-xs group flex flex-col items-center justify-center p-6 rounded-2xl shadow-lg hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-offset-2 dark:focus:ring-offset-gray-900 focus:ring-primary-dark transform transition-all duration-300 ease-in-out hover:-translate-y-2 ${color}`}
     aria-label={`Select category: ${category.name}`}
   >
     {category.icon}
@@ -31,9 +31,12 @@ export const CategorySelection: React.FC<CategorySelectionProps> = ({ categories
   ];
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="w-full flex justify-start mb-4">
-        <img src="./assets/logo.jpg" alt="Blind People's Association Logo" className="h-24 w-auto" />
+    <div className="flex flex-col items-center w-full px-4">
+      <div className="w-full flex items-center gap-4 px-4 py-4 border-b border-gray-300 bg-white">
+        <img src="./assets/logo.jpg" alt="Blind People's Association Logo" className="h-16 w-16 object-contain" />
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
+          Blind People's Association
+        </h1>
       </div>
       <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-4 text-gray-900 dark:text-white">
         Choose a Category
