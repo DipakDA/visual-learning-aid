@@ -32,7 +32,6 @@ export const LearningView: React.FC<LearningViewProps> = ({ category, onGoHome }
   const items = useMemo(() => {
     const itemList = category.items;
 
-    console.log("Category items:", itemList);
     return isShuffled ? shuffleArray(itemList) : itemList;
   }, [category.items, isShuffled]);
   
@@ -41,17 +40,15 @@ export const LearningView: React.FC<LearningViewProps> = ({ category, onGoHome }
     setCurrentIndex(0);
   }, [items]);
 
-  // console.log("Current items:", items);
-
   const currentItem: ItemData | undefined = items[currentIndex];
 
   useEffect(() => {
+    // console.log("Speak: " + speak);
     if (currentItem) {
+      console.log("Speaking item:", currentItem.name);
       speak(currentItem.name);
     }
   }, [currentItem, speak]);
-
-  console.log(currentItem);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
@@ -73,7 +70,7 @@ export const LearningView: React.FC<LearningViewProps> = ({ category, onGoHome }
 
 
   return (
-    <div className="flex flex-col items-center justify-between h-[calc(100vh-4rem)] max-w-4xl mx-auto">
+    <div className="flex flex-col items-center justify-between h-screen max-h-screen w-full overflow-hidden">
       <div className="w-full flex justify-between items-center mb-4">
         <button onClick={onGoHome} className="p-3 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" aria-label="Go to category selection">
             <HomeIcon className="w-8 h-8 text-gray-700 dark:text-gray-200"/>

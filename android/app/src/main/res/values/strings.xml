@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">visual-learning-aid</string>
+    <string name="title_activity_main">visual-learning-aid</string>
+    <string name="package_name">com.dipak.visuallearning</string>
+    <string name="custom_url_scheme">com.dipak.visuallearning</string>
+</resources>
